@@ -14,13 +14,14 @@ public class CreateBaseCharacterScript : MonoBehaviour {
         character.transform.parent = gameObject.transform;
         GameObject temp2 = Instantiate((GameObject)Resources.Load("Models/Octavia"));
         head = temp2;
+        //head.transform.parent.position = new Vector3(-0.1f, -1.4f, -17.03f);
+        head.transform.parent = gameObject.transform;
         ApplyBaseMaterials();
+
+        gameObject.AddComponent<AnimationLinkScript>();
+        Destroy(this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     void ApplyBaseMaterials()
     {
@@ -52,26 +53,60 @@ public class CreateBaseCharacterScript : MonoBehaviour {
         Material[] tailMaterial;
         headMaterials = head.transform.FindChild("Reference").GetComponent<Renderer>().materials;
         hairMaterial = head.transform.FindChild("Hair").GetComponent<Renderer>().materials;
-        tailMaterial = head.transform.FindChild("Hair").GetComponent<Renderer>().materials;
+        tailMaterial = head.transform.FindChild("Tail").GetComponent<Renderer>().materials;
 
         for(int iter = 0; headMaterials.Length > iter; iter++)
         {
-            if (materials[iter].name == "body (Instance)")
+            if (headMaterials[iter].name == "body (Instance)")
             {
                 headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/H_Octavia");
                 headMaterials[iter].color = Color.white;
             }
-            else if (materials[iter].name == "tongue (Instance)")
+            else if (headMaterials[iter].name == "tongue (Instance)")
             {
                 headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/Generic_Tongue");
                 headMaterials[iter].color = Color.white;
             }
-            else if (materials[iter].name == "tongue (Instance)")
+            else if (headMaterials[iter].name == "teeth (Instance)")
             {
-                headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/Generic_Tongue");
+                headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/Generic_Teeth");
+                headMaterials[iter].color = Color.white;
+            }
+            else if (headMaterials[iter].name == "eyelashes (Instance)")
+            {
+                headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/Generic_Eyelashes");
+                headMaterials[iter].color = Color.white;
+            }
+            else if (headMaterials[iter].name == "eyeball_l (Instance)")
+            {
+                headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/EL_Octavia");
+                headMaterials[iter].mainTextureOffset = new Vector2(0.8f, -0.2f);
+                headMaterials[iter].color = Color.white;
+            }
+            else if (headMaterials[iter].name == "eyeball_r (Instance)")
+            {
+                headMaterials[iter].mainTexture = (Texture)Resources.Load("Models/Materials/ER_Octavia");
+                headMaterials[iter].mainTextureOffset = new Vector2(0.2f, -0.2f);
                 headMaterials[iter].color = Color.white;
             }
 
+        }
+
+        for(int iter = 0; hairMaterial.Length > iter; iter++)
+        {
+            if (hairMaterial[iter].name == "hair (Instance)")
+            {
+                hairMaterial[iter].mainTexture = (Texture)Resources.Load("Models/Materials/HA_Octavia");
+                hairMaterial[iter].color = Color.white;
+            }
+        }
+        for (int iter = 0; tailMaterial.Length > iter; iter++)
+        {
+            if (tailMaterial[iter].name == "tail (Instance)")
+            {
+                tailMaterial[iter].mainTexture = (Texture)Resources.Load("Models/Materials/TA_Octavia");
+                tailMaterial[iter].color = Color.white;
+            }
         }
     }
 }
