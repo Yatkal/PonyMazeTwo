@@ -71,6 +71,18 @@ public class ApplicationManagerScript : MonoBehaviour {
                     previousApplicationState = currentApplicationState;
                 }
             }
+            else if (currentApplicationState == "CHARSELECT")
+            {
+                if (SceneManager.GetSceneByName("CharacterCreationScene").isLoaded != true)
+                {
+                    SceneManager.LoadScene("CharacterCreationScene", LoadSceneMode.Additive);
+                    Debug.Log("LoadCharacterSelectionScene");
+                    currentLevelScene = "CharacterCreationScene";
+                    SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentLevelScene));
+                }
+                previousApplicationState = currentApplicationState;
+
+            }
             else if (currentApplicationState == "LEVEL1PLAY")
             {
                 if (SceneManager.GetSceneByName("Level1").isLoaded != true)

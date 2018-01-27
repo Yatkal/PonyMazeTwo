@@ -11,8 +11,8 @@ namespace UI
 
         void OnTrigger()
         {
-            AudioManagerScript.instance.CreateNewSound("MenuPressSound");
-            ApplicationManagerScript.instance.SetCurrentApplicationState("LEVEL1PLAY");
+            //AudioManagerScript.instance.CreateNewSound("MenuPressSound");
+            ApplicationManagerScript.instance.SetCurrentApplicationState("CHARSELECT");
         }
 
     }
